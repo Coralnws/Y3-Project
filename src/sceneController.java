@@ -1,10 +1,16 @@
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 
 /** sceneController
@@ -14,6 +20,8 @@ import java.io.IOException;
 
 public class sceneController {
 
+    @FXML
+    ImageView close;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -30,6 +38,7 @@ public class sceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         DragUtil.addDragListener(stage,root);
+        scene.setFill(Paint.valueOf("#ffffff00"));
         stage.show();
 
     }
@@ -39,6 +48,7 @@ public class sceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         DragUtil.addDragListener(stage,root);
+        scene.setFill(Paint.valueOf("#ffffff00"));
         stage.show();
     }
     public void switchTimeTable(ActionEvent event) throws IOException {
@@ -47,6 +57,7 @@ public class sceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         DragUtil.addDragListener(stage,root);
+        scene.setFill(Paint.valueOf("#ffffff00"));
         stage.show();
     }
     public void switchNotes(ActionEvent event) throws IOException {
@@ -55,6 +66,7 @@ public class sceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         DragUtil.addDragListener(stage,root);
+        scene.setFill(Paint.valueOf("#ffffff00"));
         stage.show();
     }
     public void switchGame(ActionEvent event) throws IOException {
@@ -63,7 +75,12 @@ public class sceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         DragUtil.addDragListener(stage,root);
+        scene.setFill(Paint.valueOf("#ffffff00"));
         stage.show();
     }
 
+    public void closeApp(ActionEvent event) throws IOException{
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Platform.exit();
+    }
 }
