@@ -9,6 +9,8 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: linear-gradient(to left,#A7A3BA,#F1A7B0); -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sceneController">
   <columnConstraints>
       <ColumnConstraints halignment="LEFT" hgrow="NEVER" minWidth="250.0" prefWidth="250.0" />
@@ -40,9 +42,13 @@
          </children>
       </HBox>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to left,#A7A3BA,#F1A7B0); -fx-background-radius: 0 20 0 0;" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowSpan="7">
-         <children>
-            <Circle fill="#a7b3bf" layoutX="480.0" layoutY="323.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text layoutX="469.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timer" />
-         </children></AnchorPane>
+          <children>
+              <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="899.0" pickOnBounds="true">
+                  <image>
+                      <Image url="@../pic/blackclose.png" />
+                  </image>
+              </ImageView>
+              <Button fx:id="closebutton" graphicTextGap="0.0" layoutX="911.0" layoutY="11.0" mnemonicParsing="false" onAction="#closeApp" opacity="0.0" prefHeight="0.0" prefWidth="14.0" scaleShape="false" style="-fx-background-color: #000000; -fx-background-radius: 50;" text="Button" />
+          </children></AnchorPane>
    </children>
 </GridPane>
