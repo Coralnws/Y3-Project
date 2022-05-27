@@ -54,7 +54,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(loader.getClassLoader().getResource("fxml/main2.fxml"));
         AnchorPane root = loader.load();
-        root.setStyle("-fx-background-image:url('file:/C:/Users/USER/Desktop/北航/面向对象Java/Y3/src/pic/bgsetround.png');-fx-background-size:cover;-fx-background-radius: 20;");
+        root.setStyle("-fx-background-image:url('pic/bgsetround.png');-fx-background-size:cover;-fx-background-radius: 20;");
         Scene scene = new Scene(root);
         scene.setFill(Paint.valueOf("#ffffff00"));
 
@@ -117,10 +117,13 @@ public class Main extends Application {
                 double time = random.nextDouble()*10+8;
                 TranslateTransition tt = new TranslateTransition(Duration.seconds(time));
 
+
                 tt.setFromX(t.getTranslateX());
+                //tt.setFromY(t.getTranslateY());
                 tt.setFromY(1200);
 
                 tt.setByX(400);
+                //tt.setByY(1200);
                 tt.setByY(-1200);
 
                 FadeTransition ft1 = new FadeTransition(Duration.seconds(time/2));
