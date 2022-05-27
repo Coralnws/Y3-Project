@@ -1,0 +1,10 @@
+1. 创建主页面 
+   - 雪花效果
+   - 开始的Button
+   - 题目和背景美化
+2. Timer功能
+   - 参考网页的番茄时钟
+3. 美化Button(颜色，icon，font)
+4. 背景颜色美化
+5. 左边栏加Icon和Schedule
+6. Schedule表美化
