@@ -1,16 +1,24 @@
 import javafx.animation.*;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
+import javafx.geometry.Pos;
 import javafx.scene.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,62 +28,63 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.function.Consumer;
 
-/**
+/** Main
  * 程序入口Main
  * @author Java小组
  */
 
 public class Main extends Application {
     @Override
+    /** start
+     * start application and play animation
+     * @param Stage
+     * @author Nws
+     */
     public void start(Stage primaryStage) throws Exception {
-
-        /*
-        StackPane sp = new StackPane();
-        AnchorPane root = new AnchorPane();
-        root.setStyle("-fx-background-image:url('file:/C:/Users/USER/Desktop/北航/面向对象Java/Y3/src/pic/bgsetround.png');-fx-background-size:cover;-fx-background-radius: 20;");
-        Scene scene = new Scene(root);
-
-        primaryStage.setScene(scene);
-        primaryStage.setWidth(1200);
-        primaryStage.setHeight(800);
-
-        DragUtil.addDragListener(primaryStage,root);
-        primaryStage.centerOnScreen();
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("Y3");
-
-        //消除边框以及实现圆角
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.show();
-         */
-
-        StackPane sp = new StackPane();
-
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(loader.getClassLoader().getResource("fxml/main2.fxml"));
+        loader.setLocation(loader.getClassLoader().getResource("fxml/main.fxml"));
         AnchorPane root = loader.load();
-        root.setStyle("-fx-background-image:url('pic/bgsetround.png');-fx-background-size:cover;-fx-background-radius: 20;");
+        ImageView bg = (ImageView) root.lookup("#bg");
         Scene scene = new Scene(root);
-        scene.setFill(Paint.valueOf("#ffffff00"));
+        scene.setFill(Color.TRANSPARENT);
+        int arc = 40;
+        Rectangle clip = new Rectangle(bg.getFitWidth(),bg.getFitHeight());
+        clip.setArcWidth(arc);
+        clip.setArcHeight(arc);
+        bg.setClip(clip);
 
         DragUtil.addDragListener(primaryStage,root);
 
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("pic/logo.png"));
         primaryStage.setResizable(false);
         primaryStage.setTitle("Y3");
 
-        //消除边框以及实现圆角
+        //消除窗口边框以及实现圆角
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
 
-        //root.getChildren().add(sp);
-        Node snowview = getSnowView(20,(int)scene.getWidth(),(int)scene.getHeight(),2500);
+        Node snowview = getAnimationView(20,(int)scene.getWidth(),(int)scene.getHeight(),2500);
+        snowview.setMouseTransparent(true);
         root.getChildren().addAll(snowview);
 
-
+        /**
+         * 实现主页面Text闪烁效果
+         */
+        Text text = (Text)root.lookup("#text");
+        FadeTransition textFade = new FadeTransition(Duration.seconds(0.8),text);
+        textFade.setFromValue(1);
+        textFade.setToValue(0.5);
+        textFade.setCycleCount(Timeline.INDEFINITE);
+        textFade.setAutoReverse(true);
+        textFade.play();
     }
 
-    public Node getSnowView(int number,int w,int h ,int z){
+    /** getAnimationView
+     * 主页面蒲公英动画
+     * @author Nws
+     */
+    public Node getAnimationView(int number,int w,int h ,int z){
 
         Random random = new Random();
         ArrayList<ImageView> img_list = new ArrayList<ImageView>();
@@ -117,14 +126,12 @@ public class Main extends Application {
                 double time = random.nextDouble()*10+8;
                 TranslateTransition tt = new TranslateTransition(Duration.seconds(time));
 
-
                 tt.setFromX(t.getTranslateX());
                 //tt.setFromY(t.getTranslateY());
-                tt.setFromY(1200);
-
+                tt.setFromY(970);
                 tt.setByX(400);
                 //tt.setByY(1200);
-                tt.setByY(-1200);
+                tt.setByY(-980);
 
                 FadeTransition ft1 = new FadeTransition(Duration.seconds(time/2));
                 ft1.setFromValue(0);

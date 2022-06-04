@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,11 +11,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: linear-gradient(to left,#A7A3BA,#F1A7B0); -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="980.0" style="-fx-background-radius: 20; -fx-background-color: #F0F5F9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sceneController">
   <columnConstraints>
-      <ColumnConstraints halignment="LEFT" hgrow="NEVER" minWidth="250.0" prefWidth="250.0" />
+      <ColumnConstraints halignment="LEFT" hgrow="NEVER" minWidth="230.0" prefWidth="230.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,35 +26,139 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="80.0" prefHeight="80.0" valignment="BOTTOM" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="113.60000000000002" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="60.0" valignment="BOTTOM" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #EEE0D7; -fx-background-radius: 20 20 0 20;" GridPane.rowSpan="8" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" style="-fx-background-color: linear-gradient(to right,#705173,#896687); -fx-background-radius: 0 0 20 0;" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7">
+      <AnchorPane fx:id="leftPane" prefHeight="650.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(to bottom, #000000,#414141,#414141,#000000); -fx-background-radius: 20 20 0 20;" GridPane.rowSpan="8">
          <children>
-            <Button fx:id="calendar" mnemonicParsing="false" onAction="#switchCalendar" text="Calendar" />
-            <Button fx:id="timetable" mnemonicParsing="false" onAction="#switchTimeTable" text="Timetable" />
-            <Button fx:id="notes" mnemonicParsing="false" onAction="#switchNotes" text="Notes" />
-            <Button fx:id="timer" mnemonicParsing="false" onAction="#switchTimer" text="Timer" />
-            <Button fx:id="game" mnemonicParsing="false" onAction="#switchGame" text="Minigame" />
+            <ImageView fitHeight="89.0" fitWidth="73.0" layoutX="80.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pic/Y3set.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="timeDate" fill="WHITE" layoutX="55.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="106.93670654296875">
+               <font>
+                  <Font name="Comic Sans MS" size="16.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="55.0" fitWidth="60.0" layoutX="14.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../pic/clocktime.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+            </ImageView>
+         </children></AnchorPane>
+      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../pic/save.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="730.0" spacing="30.0" style="-fx-background-color: linear-gradient(to left, #ba5370, #f4e2d8); -fx-background-radius: 0 0 20 0;" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7" GridPane.rowSpan="2147483647">
+         <children>
+            <Button fx:id="calendar" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#switchCalendar" prefHeight="43.0" prefWidth="122.0" style="-fx-background-radius: 30; -fx-background-color: #FFF6EA; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 2;" text="Calendar" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pic/calendar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Rockwell Nova" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="timetable1" mnemonicParsing="false" onAction="#switchTimeTable" style="-fx-background-radius: 30; -fx-background-color: #FFF6EA; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 2;" text="Timetable">
+               <font>
+                  <Font name="Rockwell Nova" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pic/study.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="notes1" mnemonicParsing="false" onAction="#switchNotes" style="-fx-background-radius: 30; -fx-background-color: #FFF6EA; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 2;" text="Notes">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pic/note.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Rockwell Nova" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="timer1" mnemonicParsing="false" onAction="#switchTimer" style="-fx-background-radius: 30; -fx-background-color: #DDDDDD; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 3;" text="Timer">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pic/timer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                   <Font name="Rockwell Nova" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="game1" mnemonicParsing="false" onAction="#switchGame" style="-fx-background-radius: 30; -fx-background-color: #FFF6EA; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 2;" text="Minigame">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pic/game.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Rockwell Nova" size="14.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to left,#A7A3BA,#F1A7B0); -fx-background-radius: 0 20 0 0;" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowSpan="7">
+      <AnchorPane fx:id="centerPane" prefHeight="584.0" prefWidth="727.0" style="-fx-background-color: linear-gradient(to bottom,#F0F5F9,#F2F2F2,#FFF2F2); -fx-background-radius: 0 20 0 0;" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowSpan="7">
           <children>
-              <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="899.0" pickOnBounds="true">
-                  <image>
-                      <Image url="@../pic/blackclose.png" />
-                  </image>
-              </ImageView>
-              <Button fx:id="closebutton" graphicTextGap="0.0" layoutX="911.0" layoutY="11.0" mnemonicParsing="false" onAction="#closeApp" opacity="0.0" prefHeight="0.0" prefWidth="14.0" scaleShape="false" style="-fx-background-color: #000000; -fx-background-radius: 50;" text="Button" />
-            <Text layoutX="167.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="timer" />
-          </children></AnchorPane>
+            <Rectangle fx:id="panel" arcHeight="5.0" arcWidth="5.0" height="153.0" layoutX="239.0" layoutY="179.0" stroke="#6e6868" strokeType="INSIDE" style="-fx-arc-height: 100; -fx-arc-width: 100;" visible="false" width="471.0">
+               <effect>
+                  <Glow />
+               </effect>
+            </Rectangle>
+            <Line fx:id="line2" endX="31.800018310546875" endY="88.79997253417969" layoutX="509.0" layoutY="118.0" startX="31.800018310546875" startY="187.0" stroke="WHITE" style="-fx-stroke-width: 4;" visible="false" />
+            <Line fx:id="line1" endX="31.800018310546875" endY="88.79997253417969" layoutX="373.0" layoutY="118.0" startX="31.800018310546875" startY="187.0" stroke="WHITE" style="-fx-stroke-width: 4;" visible="false" />
+            <Button fx:id="closebutton" graphicTextGap="0.0" layoutX="715.0" layoutY="11.0" mnemonicParsing="false" onAction="#closeApp" opacity="0.0" prefHeight="0.0" prefWidth="14.0" scaleShape="false" style="-fx-background-color: #000000; -fx-background-radius: 50;" text="Button" />
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="717.0" layoutY="14.0" mouseTransparent="true" pickOnBounds="true">
+               <image>
+                  <Image url="@../pic/blackclose.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="timer" layoutX="41.0" layoutY="494.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="158.0" style="-fx-background-radius: 30; -fx-background-color: #73777B; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 3;" text="Timer" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell Nova" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="stopwatch" layoutX="41.0" layoutY="426.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="158.0" style="-fx-background-radius: 30; -fx-background-color: Black; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 3;" text="Stopwatch" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell Nova" size="18.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="lapPane" layoutX="41.0" layoutY="65.0" prefHeight="342.0" prefWidth="158.0" />
+            <Button fx:id="setHr" layoutX="269.0" layoutY="205.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="122.0" style="-fx-background-color: transparent;" />
+            <Button fx:id="setMin" layoutX="416.0" layoutY="205.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="114.0" style="-fx-background-color: transparent;" />
+            <Button fx:id="setSec" layoutX="551.0" layoutY="205.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="122.0" style="-fx-background-color: transparent;" />
+          </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </AnchorPane>
    </children>
 </GridPane>
