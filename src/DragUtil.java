@@ -3,29 +3,24 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
+/** DragUtil class
  * 窗口拖动工具
- * @author Java小组
- * @createTime 2022/05/16
+ * @author Nws
  */
-
 public class DragUtil {
 
     /** addDragListener
      * 创建DragLister以及调用enableDrag方法
-     * @param stage and root
-     * @return None
+     * @param stage
+     * @param root
      */
-
     public static void addDragListener(Stage stage, Node root){
         new DragListener(stage).enableDrag(root);
     }
 
     /** DragListener
-     * 内部类DragLister，处理鼠标事件
-     * @return None
+     * 处理鼠标事件
      */
-
     static class DragListener implements EventHandler<MouseEvent>{
         //定义偏移量，处理窗口移动
         private double oldStageX;
