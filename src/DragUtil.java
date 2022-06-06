@@ -8,12 +8,12 @@ import javafx.stage.Stage;
  * @author Nws
  */
 public class DragUtil {
-
     /** addDragListener
      * 创建DragLister以及调用enableDrag方法
      * @param stage
      * @param root
      */
+
     public static void addDragListener(Stage stage, Node root){
         new DragListener(stage).enableDrag(root);
     }

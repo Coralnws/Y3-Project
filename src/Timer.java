@@ -1,4 +1,3 @@
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -6,12 +5,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
+import java.net.URL;
 import java.util.ArrayList;
 
 /** Timer class
@@ -25,9 +25,9 @@ public class Timer {
     AnchorPane centerPane;
     AnchorPane lapPane;
     Parent root;
-    public Boolean run = true;
-    int hr = 0, min = 0, sec = 0;
-    int hr2 = 0,min2 = 0,sec2 = 0;
+    public Boolean run = true,pause=false;
+    static int hr = 0, min = 0, sec = 0;
+    static int hr2 = 0,min2 = 0,sec2 = 0;
     Boolean editable,newRun,choosen;
     Text hrs,mins,secs;
     Font font = new Font("Rockwell Nova",14);
@@ -35,16 +35,17 @@ public class Timer {
     ArrayList<Button> buttonaddList = new ArrayList<Button>();
     ArrayList<Button> buttonsubList = new ArrayList<Button>();
     ArrayList<Text> textList = new ArrayList<Text>();
-    String currentStyle;
+    String currentStyle,newStyle;
+    AudioClip notis;
     static int layoutText = 18; //+24
     static int layoutRec = 1; //+24
     static int cnt = 1;
+    String stopwatchStyle="-fx-background-radius: 30; -fx-background-color: Black; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 3;";
     StringBuilder buttonStyle = new StringBuilder("-fx-background-radius: 20;-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 20; -fx-border-width: 2;");
     StringBuilder textStyle = new StringBuilder("-fx-font-family: 'Bookman Old Style';-fx-font-size: 56;");
 
     /** Timer构造函数
      * 初始化页面及其他工具，设置Start按键事件和Stopwatch按键事件
-     * @param root
      */
     public Timer(Parent root){
         /**
@@ -54,6 +55,8 @@ public class Timer {
         editable = true;
         choosen=false;
         newRun=true;
+        URL url = this.getClass().getClassLoader().getResource("audio/timerEnd2.wav");
+        notis = new AudioClip(url.toExternalForm());
         centerPane = (AnchorPane)root.lookup("#centerPane");
         setHr = (Button)root.lookup("#setHr");
         setMin = (Button)root.lookup("#setMin");
@@ -61,17 +64,17 @@ public class Timer {
         Stopwatch = (Button)root.lookup("#stopwatch");
         Timer = (Button)root.lookup("#timer");
 
-        //Initialize
+        /**
+         * 初始化新Button和Text
+         */
         initializeText(root);
         initializeButton(root);
-        visibleRec(root);
-        buttonY.setVisible(true);
-        buttonB.setVisible(false);
 
-        //Change style
+        /**
+         * 获取按键样式，用于后续替代
+         */
         currentStyle = Timer.getStyle();
-        String newStyle = currentStyle.replace("-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0);", "-fx-border-color: #FFBC97;");
-        Timer.setStyle(newStyle);
+        newStyle = currentStyle.replace("-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0);", "-fx-border-color: #FFBC97;");
 
         /** buttonY.setOnAction
          * 读取 Start button event,start Timer
@@ -137,6 +140,43 @@ public class Timer {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(false);
+    }
+
+    /** setScene
+     * 转换Stopwatch功能时，判断上次离开时是处于运行状态，将隐藏的组件设为可视
+     */
+    public void setScene(){
+        visibleRec(root);
+        buttonY.setVisible(true);
+        if(run){
+            buttonB.setVisible(false);
+        }
+        else{
+            buttonB.setVisible(true);
+        }
+        if(pause){
+            buttonB.setVisible(true);
+        }
+
+        for(int i=0;i<3;i++){
+            Button button = new Button();
+            button = buttonaddList.get(i);
+            button.setVisible(true);
+        }
+        for(int i=0;i<3;i++){
+            Button button = new Button();
+            button = buttonsubList.get(i);
+            button.setVisible(true);
+        }
+        for(int i=0;i<3;i++){
+            Text text = new Text();
+            text = textList.get(i);
+            text.setVisible(true);
+        }
+
+        //Change style
+        Timer.setStyle(newStyle);
+        Stopwatch.setStyle(stopwatchStyle);
 
         /** Stopwatch.setOnAction
          * 读取Stopwatch button event,转Stopwatch功能
@@ -147,6 +187,39 @@ public class Timer {
                 changeStopwatch();
             }
         });
+
+        /** Stopwatch.setOnAction
+         * 重复按键事件时，读取事件并且不做任何操作
+         */
+        Timer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Press Timer Again");
+            }
+        });
+    }
+
+    /** changeScene
+     * 离开此功能时，将组件设为隐藏
+     */
+    public void changeScene(){
+        buttonY.setVisible(false);
+        buttonB.setVisible(false);
+        for(int i=0;i<3;i++){
+            Button button = new Button();
+            button = buttonaddList.get(i);
+            button.setVisible(false);
+        }
+        for(int i=0;i<3;i++){
+            Button button = new Button();
+            button = buttonsubList.get(i);
+            button.setVisible(false);
+        }
+        for(int i=0;i<3;i++){
+            Text text = new Text();
+            text = textList.get(i);
+            text.setVisible(false);
+        }
     }
 
     /** initializeButton
@@ -162,6 +235,7 @@ public class Timer {
         buttonY.setLayoutY(400);
         buttonY.setPrefHeight(55);
         buttonY.setPrefWidth(122);
+        buttonY.setVisible(false);
 
         //Blue button: Stop
         buttonB = new Button("Stop");
@@ -171,6 +245,7 @@ public class Timer {
         buttonB.setFont(buttonFont);
         buttonB.setPrefHeight(55);
         buttonB.setPrefWidth(122);
+        buttonB.setVisible(false);
 
         button1 = new Button("+1");
         button5 = new Button("+5");
@@ -193,6 +268,7 @@ public class Timer {
             button.setFont(font);
             button.setPrefHeight(50);
             button.setPrefWidth(50);
+            button.setVisible(false);
         }
 
         for(int i=0;i<3;i++){
@@ -203,6 +279,7 @@ public class Timer {
             button.setFont(font);
             button.setPrefHeight(50);
             button.setPrefWidth(50);
+            button.setVisible(false);
         }
         button1.setLayoutY(360);
         button5.setLayoutY(420);
@@ -231,6 +308,7 @@ public class Timer {
             text.setStyle(String.valueOf(textStyle.append("-fx-fill:WHITE;")));
             text.setLayoutY(278);
             text.setMouseTransparent(true);
+            text.setVisible(false);
         }
         hrs.setLayoutX(296);
         mins.setLayoutX(437);
@@ -440,7 +518,7 @@ public class Timer {
             hr2 = hr;
             min2 = min;
             sec2 = sec;
-            setText();
+            setText(1);
             editable=false;
             newRun=false;
             choosen=false;
@@ -449,6 +527,7 @@ public class Timer {
         if (run) {
             timeline.play();
             run = false;
+            pause=false;
             buttonY.setText("Pause");
             buttonY.setLayoutX(470);
             buttonY.setLayoutY(400);
@@ -469,6 +548,7 @@ public class Timer {
             });
         } else {
             timeline.pause();
+            pause = true;
             run = true;
             buttonY.setText("Resume");
             buttonY.setOnAction(new EventHandler<ActionEvent>() {
@@ -495,7 +575,8 @@ public class Timer {
         run=true;
         editable=true;
         choosen=false;
-        setText();
+        pause=false;
+        setText(1);
         buttonB.setVisible(false);
         buttonY.setText("Start");
         buttonY.setLayoutX(410);
@@ -505,10 +586,17 @@ public class Timer {
     /** setText
      * 将设置的时间写入TimerBox
      */
-    private void setText(){
-        hrs.setText((((hr / 10) == 0) ? "0" : "") + hr);
-        mins.setText((((min / 10) == 0) ? "0" : "") + min);
-        secs.setText((((sec / 10) == 0) ? "0" : "") + sec);
+    private void setText(int mode){
+        if(mode==1) {
+            hrs.setText((((hr / 10) == 0) ? "0" : "") + hr);
+            mins.setText((((min / 10) == 0) ? "0" : "") + min);
+            secs.setText((((sec / 10) == 0) ? "0" : "") + sec);
+        }
+        else if(mode==0){
+            hrs.setText((((hr / 10) == 0) ? "0" : "") + hr2);
+            mins.setText((((min / 10) == 0) ? "0" : "") + min2);
+            secs.setText((((sec / 10) == 0) ? "0" : "") + sec2);
+        }
         hrs.setStyle(String.valueOf(textStyle.append("-fx-fill:WHITE;")));
         mins.setStyle(String.valueOf(textStyle.append("-fx-fill:WHITE;")));
         secs.setStyle(String.valueOf(textStyle.append("-fx-fill:WHITE;")));
@@ -520,6 +608,7 @@ public class Timer {
     private void reWrite() {
         while (sec2 == 0) {
             if(hr2 == 0 && min2 == 0){
+                notis.play();
                 stopTimer();
                 return;
             }
@@ -533,9 +622,6 @@ public class Timer {
                     min2 = 60;
                 }
             }
-            else if(hr2==0){
-                stopTimer();
-            }
         }
 
         sec2--;
@@ -548,13 +634,13 @@ public class Timer {
      * 切换Stopwatch功能
      */
     public void changeStopwatch(){
-        centerPane.getChildren().removeAll(buttonY, buttonB,mins,secs,hrs,button1,button5,button10,button_1,button_5,button_10);
+        changeScene();
         Timer.setStyle(currentStyle);
-        Stopwatch stopwatch = new Stopwatch(root);
-        stopwatch.buttonY.setOnAction(new EventHandler<ActionEvent>() {
+        sceneController.stopwatch.setScene();
+        sceneController.stopwatch.buttonY.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                stopwatch.startPauseStopwatch();
+                sceneController.stopwatch.startPauseStopwatch();
             }
         });
     }
