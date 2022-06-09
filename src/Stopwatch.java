@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author Nws
  */
 public class Stopwatch {
-    public Button Stopwatch, Timer,buttonY, Pause, Resume, buttonB, Reset;
+    public Button Stopwatch, Timer,buttonY, buttonB;
     Timeline timeline;
     AnchorPane centerPane,lapPane;
     Parent root;
@@ -179,7 +179,7 @@ public class Stopwatch {
      * 初始化Text及美化
      * @param root
      */
-    public void initializeText(Parent root){
+    private void initializeText(Parent root){
         mins = new Text("00");
         secs = new Text("00");
         centis = new Text("00");

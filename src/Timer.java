@@ -19,11 +19,9 @@ import java.util.ArrayList;
  * @author Nws
  */
 public class Timer {
-    public Button Stopwatch,Timer, buttonY, Pause, Resume, buttonB, Reset,button1,button5,button10,setHr,setMin,setSec,button_1,button_5,button_10;
-    Text time;
+    public Button Stopwatch,Timer, buttonY,buttonB, button1,button5,button10,setHr,setMin,setSec,button_1,button_5,button_10;
     Timeline timeline;
     AnchorPane centerPane;
-    AnchorPane lapPane;
     Parent root;
     public Boolean run = true,pause=false;
     static int hr = 0, min = 0, sec = 0;
@@ -37,9 +35,6 @@ public class Timer {
     ArrayList<Text> textList = new ArrayList<Text>();
     String currentStyle,newStyle;
     AudioClip notis;
-    static int layoutText = 18; //+24
-    static int layoutRec = 1; //+24
-    static int cnt = 1;
     String stopwatchStyle="-fx-background-radius: 30; -fx-background-color: Black; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 3;";
     StringBuilder buttonStyle = new StringBuilder("-fx-background-radius: 20;-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 20; -fx-border-width: 2;");
     StringBuilder textStyle = new StringBuilder("-fx-font-family: 'Bookman Old Style';-fx-font-size: 56;");
@@ -294,7 +289,7 @@ public class Timer {
      * 初始化Text及美化
      * @param root
      */
-    public void initializeText(Parent root){
+    private void initializeText(Parent root){
         hrs = new Text("00");
         mins = new Text("00");
         secs = new Text("00");
