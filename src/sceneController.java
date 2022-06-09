@@ -1,4 +1,3 @@
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,12 +20,20 @@ import java.io.IOException;
  */
 
 public class sceneController {
-
-    @FXML
-    ImageView close;
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    /**
+     * Variable for timer function
+     * 用于实现切回Timer页面时计时仍在继续（创建的对象唯一，并且每次切回页面都在继续使用同一个对象）
+     */
+    static private Scene timerScene;
+    static Parent timerRoot;
+    static Boolean first=true;
+    static Stopwatch stopwatch;
+    static Timer timerObj;
+    static int[] timerInt = {0,0};
 
     /** currentPage variable
      * To avoid reload same page
@@ -50,33 +57,38 @@ public class sceneController {
 
     public void switchTimer(ActionEvent event) throws IOException {
         if(currentPage!=4) {
-            root = FXMLLoader.load(getClass().getResource("fxml/timer.fxml"));
+            timerInt= new int[]{0, 0};
+            if(first){
+                timerRoot = FXMLLoader.load(getClass().getResource("fxml/timer.fxml"));
+                timerScene = new Scene(timerRoot);
+                stopwatch = new Stopwatch(timerRoot);
+                timerObj = new Timer(timerRoot);
+                first=false;
+            }
             currentPage=4;
-            showScene(event, root);
+            timerShowScene(event, timerRoot);
             Button stopWatch = new Button();
             Button timer = new Button();
-            timer = (Button)root.lookup("#timer");
-            stopWatch = (Button)root.lookup("#stopwatch");
-            int[] mode = {1,0,0};
-            /**int[] mode
-             * To avoid reload same function
-             * mode[1] : Stopwatch ; mode[2] : Timer
-             */
+            timer = (Button)timerRoot.lookup("#timer");
+            stopWatch = (Button)timerRoot.lookup("#stopwatch");
+
             stopWatch.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    if (mode[1] !=1){
-                        Stopwatch stopwatch = new Stopwatch(root);
-                        mode[1] = 1;
+                    if (timerInt[0]==0){
+                        timerObj.changeScene();
+                        stopwatch.setScene();
+                        timerInt[0] = 1;
                     }
                 }
             });
             timer.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    if(mode[2]!=1){
-                        Timer timer  = new Timer(root);
-                        mode[2] = 1;
+                    if(timerInt[1]==0){
+                        stopwatch.changeScene();
+                        timerObj.setScene();
+                        timerInt[1] = 1;
                     }
                 }
             });
@@ -99,6 +111,10 @@ public class sceneController {
         }
     }
     public void switchGame(ActionEvent event) throws IOException {
+        if (timerObj!=null) {
+            //timerObj.changeScene();
+        }
+
         if(currentPage!=5) {
             root = FXMLLoader.load(getClass().getResource("fxml/game.fxml"));
             showScene(event, root);
@@ -119,6 +135,22 @@ public class sceneController {
         Clock clock = new Clock(leftPane);
         DragUtil.addDragListener(stage,root);
         scene.setFill(Paint.valueOf("#ffffff00"));
+        stage.show();
+    }
+
+    /** timerShowScene
+     * 显示Timer页面，Timer的TimerScene唯一，每次切回Timer页面都是重新加载同一个Scene
+     * @param event
+     * @param root
+     * @throws IOException
+     */
+    public void timerShowScene(ActionEvent event,Parent root)throws IOException{
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(timerScene);
+        AnchorPane leftPane = (AnchorPane) root.lookup("#leftPane");
+        Clock clock = new Clock(leftPane);
+        DragUtil.addDragListener(stage,root);
+        timerScene.setFill(Paint.valueOf("#ffffff00"));
         stage.show();
     }
 }
