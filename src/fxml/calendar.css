@@ -1,0 +1,28 @@
+.date-picker .arrow-button {
+    -fx-background-color:  #F5E0E0;
+    -fx-background-radius: 0;
+}
+.date-picker .text-field {
+    -fx-background-color: #FFFFFF;
+}
+.date-picker .text-field:focused {
+    -fx-background-color: #FFFFFF;
+}
+.date-picker .cell {
+    -fx-background-color: #FFFFFF;
+}
+.date-picker .cell:hover {
+    -fx-background-color: #F5E0E0;
+    -fx-text-fill: #903950;
+}
+.date-picker .selected {
+    -fx-background-color: #F5C9C9;
+    -fx-text-fill: #000000;
+}
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #F5C9C9;
+}
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: #000000;
+}

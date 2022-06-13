@@ -52,6 +52,7 @@ public class sceneController {
             root = FXMLLoader.load(getClass().getResource("fxml/calendar.fxml"));
             currentPage = 1;
             showScene(event,root);
+            CalendarPanel cp = new CalendarPanel(root);
         }
     }
 
