@@ -101,6 +101,7 @@ public class sceneController {
             root = FXMLLoader.load(getClass().getResource("fxml/time_table.fxml"));
             showScene(event, root);
             currentPage=2;
+            TimeTable t = new TimeTable(root);
         }
     }
 
