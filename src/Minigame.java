@@ -2,8 +2,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,9 +20,11 @@ public class Minigame {
     Pane gamePane;
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, button15;
     Button game1;
-    Button restart;
+    Circle restart, restart1;
     StringBuilder buttonStyle = new StringBuilder("-fx-background-radius: 20;-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 20; -fx-border-width: 2;");
     Font buttonFont = new Font("Rockwell Nova",18);
+    ImageView restartImg, restartImg1;
+    Text minigameText, puzzleText;
 
     int x = 0;
     int y = 0;
@@ -53,10 +59,17 @@ public class Minigame {
         button15 = (Button)root.lookup("#button15");
 
         game1 = (Button)root.lookup("#minigame1");
-        restart = (Button)root.lookup("#restart");
+        restart = (Circle)root.lookup("#restart");
+        restartImg = (ImageView) root.lookup("#restartImg");
+        restart1 = (Circle)root.lookup("#restart1");
+        restartImg1 = (ImageView) root.lookup("#restartImg1");
+        minigameText = (Text) root.lookup("#minigameText");
+        puzzleText = (Text) root.lookup("#puzzleText");
+
 
         initialButton();
         randomTile();
+
 
         button1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -222,9 +235,36 @@ public class Minigame {
             }
         });
 
-        restart.setOnAction(new EventHandler<ActionEvent>() {
+        restart.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("CLICKING RESTART BUTTON");
+                restartGame();
+                randomTile();
+            }
+        });
+
+        restartImg.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("CLICKING RESTART BUTTON");
+                restartGame();
+                randomTile();
+            }
+        });
+
+        restart1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("CLICKING RESTART BUTTON");
+                restartGame();
+                randomTile();
+            }
+        });
+
+        restartImg1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
                 System.out.println("CLICKING RESTART BUTTON");
                 restartGame();
                 randomTile();
@@ -251,6 +291,10 @@ public class Minigame {
                 button13.setVisible(true);
                 button14.setVisible(true);
                 button15.setVisible(true);
+                restartImg1.setVisible(true);
+                restart1.setVisible(true);
+                puzzleText.setVisible(true);
+                minigameText.setVisible(false);
             }
         });
 
@@ -436,6 +480,10 @@ public class Minigame {
         button14.setVisible(false);
         button15.setVisible(false);
         restart.setVisible(false);
+        restartImg.setVisible(false);
+        restart1.setVisible(false);
+        restartImg1.setVisible(false);
+        puzzleText.setVisible(false);
     }
 
     private void randomTile() {
@@ -457,21 +505,6 @@ public class Minigame {
         button13.setText(String.valueOf(numberList.get(12)));
         button14.setText(String.valueOf(numberList.get(13)));
         button15.setText(String.valueOf(numberList.get(14)));
-//        button1.setText("1");
-//        button2.setText("2");
-//        button3.setText("3");
-//        button4.setText("4");
-//        button5.setText("5");
-//        button6.setText("6");
-//        button7.setText("7");
-//        button8.setText("8");
-//        button9.setText("9");
-//        button10.setText("10");
-//        button11.setText("15");
-//        button12.setText("11");
-//        button13.setText("13");
-//        button14.setText("14");
-//        button15.setText("12");
 
         currentTile[0][0] = numberList.get(0);
         currentTile[0][1] = numberList.get(1);
@@ -489,22 +522,7 @@ public class Minigame {
         currentTile[3][1] = numberList.get(13);
         currentTile[3][2] = numberList.get(14);
         currentTile[3][3] = 0;
-//        currentTile[0][0] = 1;
-//        currentTile[0][1] = 2;
-//        currentTile[0][2] = 3;
-//        currentTile[0][3] = 4;
-//        currentTile[1][0] = 5;
-//        currentTile[1][1] = 6;
-//        currentTile[1][2] = 7;
-//        currentTile[1][3] = 8;
-//        currentTile[2][0] = 9;
-//        currentTile[2][1] = 10;
-//        currentTile[2][2] = 15;
-//        currentTile[2][3] = 11;
-//        currentTile[3][0] = 13;
-//        currentTile[3][1] = 14;
-//        currentTile[3][2] = 12;
-//        currentTile[3][3] = 0;
+
         System.out.println("CURRENT:" + Arrays.deepToString(currentTile));
         System.out.println("EMPTY:" + Arrays.deepToString(emptyTile));
 
@@ -579,7 +597,10 @@ public class Minigame {
             button13.setDisable(true);
             button14.setDisable(true);
             button15.setDisable(true);
+            restart1.setDisable(true);
+            restartImg1.setDisable(true);
             restart.setVisible(true);
+            restartImg.setVisible(true);
 
             return true;
         }
@@ -603,7 +624,10 @@ public class Minigame {
         button13.setDisable(false);
         button14.setDisable(false);
         button15.setDisable(false);
+        restart1.setDisable(false);
+        restartImg1.setDisable(false);
         restart.setVisible(false);
+        restartImg.setVisible(false);
 
         button1.setLayoutX(0);
         button1.setLayoutY(0);

@@ -27,6 +27,7 @@ public class Notes {
 
     StringBuilder noteStyle = new StringBuilder("-fx-control-inner-background:#ffffcc; ");
     StringBuilder buttonStyle = new StringBuilder("-fx-background-color:#ffff66; ");
+    StringBuilder addButtonStyle = new StringBuilder("-fx-background-radius:20; -fx-background-color:linear-gradient(#DC4570, #f4e2d8);");
     String saveButtonStyle = new String("-fx-background-color:#ffff66; -fx-border-width:1; -fx-border-color:#000000; ");
 
     public Notes(Parent root) {
@@ -35,6 +36,7 @@ public class Notes {
         notePane.setHgap(10);
         notePane.setVgap(13);
         add = (Button) root.lookup("#add");
+        add.setStyle(String.valueOf(addButtonStyle));
 
         loadNote();
 
