@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * @author Nws
  */
 public class Stopwatch {
-    public Button Stopwatch, Timer,buttonY, buttonB;
+    public Button Stopwatch, Timer,buttonY, Pause, Resume, buttonB, Reset;
     Timeline timeline;
     AnchorPane centerPane,lapPane;
     Parent root;
-    public Boolean run = true,pause=false;
+    public Boolean run = true;
     int min = 0, sec = 0, centi = 0;
     Text mins,secs,centis;
     ArrayList<Text> textList = new ArrayList<Text>();
@@ -32,8 +32,7 @@ public class Stopwatch {
     static int layoutText = 18; //+24
     static int layoutRec = 1; //+24
     static int cnt = 1;
-    String currentStyle,newStyle;
-    String timerStyle="-fx-background-radius: 30; -fx-background-color: #73777B; -fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 30; -fx-border-width: 3;";
+    String currentStyle;
     StringBuilder buttonStyle = new StringBuilder("-fx-background-radius: 20;-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 20; -fx-border-width: 2;");
 
     /** Stopwatch构造函数
@@ -51,17 +50,17 @@ public class Stopwatch {
         Timer = (Button)root.lookup("#timer");
         lapPane = (AnchorPane)root.lookup("#lapPane");
 
-        /**
-         * 初始化新Button和Text
-         */
+        //Initialize
         initializeButton(root);
         initializeText(root);
+        visibleRec(root);
+        buttonY.setVisible(true);
+        buttonB.setVisible(false);
 
-        /**
-         * 获取按键样式，用于后续替代
-         */
+        //Change style
         currentStyle = Stopwatch.getStyle();
-        newStyle = currentStyle.replace("-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0);", "-fx-border-color: #FFBC97;");
+        String newStyle = currentStyle.replace("-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0);", "-fx-border-color: #FFBC97;");
+        Stopwatch.setStyle(newStyle);
 
         /** Timeline
          * 使用timeline实现每秒时间递减和重写Stopwatch时间
@@ -86,32 +85,6 @@ public class Stopwatch {
                 }
             }
         });
-    }
-
-    /** setScene
-     * 转换Stopwatch功能时，判断上次离开时是处于运行状态，将隐藏的组件设为可视
-     */
-    public void setScene(){
-        visibleRec(root);
-        buttonY.setVisible(true);
-        if(run){
-            buttonB.setVisible(false);
-        }
-        else{
-            buttonB.setVisible(true);
-        }
-        if(pause){
-            buttonB.setVisible(true);
-        }
-
-        Stopwatch.setStyle(newStyle);
-        Timer.setStyle(timerStyle);
-
-        for(int i=0;i<3;i++){
-            Text text = new Text();
-            text = textList.get(i);
-            text.setVisible(true);
-        }
 
         /** Timer.setOnAction
          * 读取Timer button event,转Timer功能
@@ -122,29 +95,6 @@ public class Stopwatch {
                 changeTimer();
             }
         });
-
-        /** Stopwatch.setOnAction
-         * 重复按键事件时，读取事件并且不做任何操作
-         */
-        Stopwatch.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Press Stopwatch Again");
-            }
-        });
-    }
-
-    /** changeScene
-     * 离开此功能时，将组件设为隐藏
-     */
-    public void changeScene(){
-        buttonY.setVisible(false);
-        buttonB.setVisible(false);
-        for(int i=0;i<3;i++){
-            Text text = new Text();
-            text = textList.get(i);
-            text.setVisible(false);
-        }
     }
 
     /** initializeButton
@@ -160,7 +110,6 @@ public class Stopwatch {
         buttonY.setLayoutY(400);
         buttonY.setPrefHeight(55);
         buttonY.setPrefWidth(122);
-        buttonY.setVisible(false);
 
         //Blue button : lap,reset
         buttonB = new Button("Lap");
@@ -170,7 +119,6 @@ public class Stopwatch {
         buttonB.setFont(buttonFont);
         buttonB.setPrefHeight(55);
         buttonB.setPrefWidth(122);
-        buttonB.setVisible(false);
 
         centerPane.getChildren().addAll(buttonY, buttonB);
     }
@@ -179,7 +127,7 @@ public class Stopwatch {
      * 初始化Text及美化
      * @param root
      */
-    private void initializeText(Parent root){
+    public void initializeText(Parent root){
         mins = new Text("00");
         secs = new Text("00");
         centis = new Text("00");
@@ -191,7 +139,6 @@ public class Stopwatch {
             text = textList.get(i);
             text.setStyle("-fx-fill:WHITE;-fx-font-family: 'Bookman Old Style';-fx-font-size: 56;");
             text.setLayoutY(278);
-            text.setVisible(false);
         }
         mins.setLayoutX(296);
         secs.setLayoutX(437);
@@ -224,7 +171,6 @@ public class Stopwatch {
             timeline.play();
             run = false;
             newRun=false;
-            pause=false;
             buttonY.setText("Pause");
             buttonY.setLayoutX(512);
             buttonY.setLayoutY(400);
@@ -246,7 +192,6 @@ public class Stopwatch {
         } else {
             timeline.pause();
             run = true;
-            pause=true;
             buttonY.setText("Resume");
             buttonY.setFont(new Font("Rockwell Nova",17));
             buttonB.setText("Reset");
@@ -269,7 +214,6 @@ public class Stopwatch {
                     lapPane.getChildren().clear();
                     cnt=1;
                     newRun=true;
-                    pause=false;
                     layoutText = 18;
                     layoutRec = 1;
                     buttonB.setVisible(false);
@@ -329,13 +273,13 @@ public class Stopwatch {
      * 切换Timer功能
      */
     public void changeTimer(){
-        changeScene();
+        centerPane.getChildren().removeAll(buttonY, buttonB,mins,secs,centis);
         Stopwatch.setStyle(currentStyle);
-        sceneController.timerObj.setScene();
-        sceneController.timerObj.buttonY.setOnAction(new EventHandler<ActionEvent>() {
+        Timer timer = new Timer(root);
+        timer.buttonY.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                sceneController.timerObj.startTimer();
+                timer.startTimer();
             }
         });
     }

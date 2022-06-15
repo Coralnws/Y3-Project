@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -126,7 +127,80 @@
                   <Image url="@../pic/blackclose.png" />
                </image>
             </ImageView>
-            <Text layoutX="333.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="game" />
+            <Text layoutX="321.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minigame">
+               <font>
+                  <Font size="24.0" />
+               </font></Text>
+            <Pane fx:id="gamePane" layoutX="174.0" layoutY="92.0" prefHeight="400.0" prefWidth="400.0">
+               <children>
+                  <Button fx:id="button1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="1">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button2" layoutX="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="2">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button3" layoutX="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="3">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button5" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="5">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button4" layoutX="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="4">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button6" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="6">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button7" layoutX="200.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="7">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button8" layoutX="300.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="8">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button9" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="9">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button10" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="10">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button11" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="11">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button12" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="12">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button13" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="13">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button14" layoutX="100.0" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="14">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="button15" layoutX="200.0" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="15">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Button>
+                  <Button fx:id="minigame1" layoutX="139.0" layoutY="167.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="122.0" text="Game 1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="restart" layoutX="324.0" layoutY="337.0" mnemonicParsing="false" text="Restart" />
+               </children>
+            </Pane>
           </children>
          <GridPane.margin>
             <Insets />
