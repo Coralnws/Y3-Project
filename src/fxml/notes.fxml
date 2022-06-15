@@ -145,7 +145,7 @@
                   <RowConstraints fillHeight="false" maxHeight="260.4" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <Button fx:id="add" layoutX="241.0" layoutY="19.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="38.0">
+            <Button fx:id="add" layoutX="444.0" layoutY="19.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="38.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
