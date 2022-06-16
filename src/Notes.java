@@ -3,12 +3,14 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -24,9 +26,11 @@ public class Notes {
     int curNote = 0;
     int gridPaneX = 0;
     int gridPaneY = 0;
-
-    StringBuilder noteStyle = new StringBuilder("-fx-control-inner-background:#ffffcc; ");
-    StringBuilder buttonStyle = new StringBuilder("-fx-background-color:#ffff66; ");
+    static int index = 0;
+    ArrayList<StringBuilder> buttonStyleList = new ArrayList<StringBuilder>();
+    ArrayList<StringBuilder> noteStyleList = new ArrayList<StringBuilder>();
+    StringBuilder noteStyle = new StringBuilder("-fx-font-family:Rockwell Nova;-fx-font-size: 17;");
+    StringBuilder buttonStyle = new StringBuilder("-fx-background-color:#ffb566;");
     StringBuilder addButtonStyle = new StringBuilder("-fx-background-radius:20; -fx-background-color:linear-gradient(#DC4570, #f4e2d8);");
     String saveButtonStyle = new String("-fx-background-color:#ffff66; -fx-border-width:1; -fx-border-color:#000000; ");
 
@@ -37,6 +41,14 @@ public class Notes {
         notePane.setVgap(13);
         add = (Button) root.lookup("#add");
         add.setStyle(String.valueOf(addButtonStyle));
+        buttonStyleList.add(new StringBuilder("-fx-background-color:#F9F2ED"));
+        buttonStyleList.add(new StringBuilder("-fx-background-color:#FFE5B4"));
+        buttonStyleList.add(new StringBuilder("-fx-background-color:#FFE6E6"));
+        buttonStyleList.add(new StringBuilder("-fx-background-color:#F6FBF4"));
+        noteStyleList.add(new StringBuilder(noteStyle.append("-fx-control-inner-background:#F9F2ED;")));
+        noteStyleList.add(new StringBuilder(noteStyle.append("-fx-control-inner-background:#FFE5B4;")));
+        noteStyleList.add(new StringBuilder(noteStyle.append("-fx-control-inner-background:#FFE6E6;")));
+        noteStyleList.add(new StringBuilder(noteStyle.append("-fx-control-inner-background:#F6FBF4;")));
 
         loadNote();
 
@@ -61,12 +73,13 @@ public class Notes {
         Button delete = new Button("X");
         Button balloon = new Button("\uD83C\uDF88");
         Button save = new Button("保存");
+        save.setFont(new Font("STFangSong",13));
         Region filler = new Region();
-        love.setStyle(String.valueOf(buttonStyle));
-        delete.setStyle(String.valueOf(buttonStyle));
-        balloon.setStyle(String.valueOf(buttonStyle));
-        filler.setStyle(String.valueOf(buttonStyle));
-        save.setStyle(String.valueOf(buttonStyle));
+        love.setStyle(String.valueOf(buttonStyleList.get(index)));
+        delete.setStyle(String.valueOf(buttonStyleList.get(index)));
+        balloon.setStyle(String.valueOf(buttonStyleList.get(index)));
+        filler.setStyle(String.valueOf(buttonStyleList.get(index)));
+        save.setStyle(String.valueOf(buttonStyleList.get(index)));
         love.setId("love" + curNote);
         delete.setId("delete" + curNote);
         balloon.setId("balloon" + curNote);
@@ -111,7 +124,11 @@ public class Notes {
         TextArea tempNote = new TextArea();
         tempNote.setPromptText("Write your text here!");
         tempNote.setWrapText(true);
-        tempNote.setStyle(String.valueOf(noteStyle));
+        tempNote.setStyle(String.valueOf(noteStyleList.get(index)));
+        index++;
+        if(index>3){
+            index = 0;
+        }
         saveIdList.add(save.getId());
         taList.add(tempNote);
         GridPane.setMargin(tempNote, new Insets(0, 0, 10, 0));
@@ -149,7 +166,7 @@ public class Notes {
     private void deleteNote(String saveId) {
         System.out.println("DELETE note: " + saveId);
 
-        File delFile = new File("D:\\IDEA Project\\Y3\\src\\notes\\" + saveId + ".txt");
+        File delFile = new File("src/notes/" + saveId + ".txt");
         if(delFile.delete()) {
             System.out.println("DELETE SUCCESS");
         }
@@ -160,8 +177,8 @@ public class Notes {
         Integer delSaveId = Integer.valueOf(saveId.substring(4,5));
 
         for(int i = delSaveId; i < curNote - 1; i++) {
-            File file = new File("D:\\IDEA Project\\Y3\\src\\notes\\save" + (i+1) + ".txt");
-            File rename = new File("D:\\IDEA Project\\Y3\\src\\notes\\save" + i + ".txt");
+            File file = new File("src/notes/save" + (i+1) + ".txt");
+            File rename = new File("src/notes/save" + i + ".txt");
 
             if(file.renameTo(rename)) {
                 System.out.println("RENAME SUCCESS");
@@ -175,7 +192,7 @@ public class Notes {
 
     private void loadNote() {
         notePane.getChildren().clear();
-        File directory = new File("D:\\IDEA Project\\Y3\\src\\notes\\");
+        File directory = new File("src/notes");
         int fileCount = directory.list().length;
         System.out.println("Load File Count:"+fileCount);
 
@@ -184,12 +201,13 @@ public class Notes {
             Button delete = new Button("X");
             Button balloon = new Button("\uD83C\uDF88");
             Button save = new Button("保存");
+            save.setFont(new Font("STFangSong",14));
             Region filler = new Region();
-            love.setStyle(String.valueOf(buttonStyle));
-            delete.setStyle(String.valueOf(buttonStyle));
-            balloon.setStyle(String.valueOf(buttonStyle));
-            filler.setStyle(String.valueOf(buttonStyle));
-            save.setStyle(String.valueOf(buttonStyle));
+            love.setStyle(String.valueOf(buttonStyleList.get(index)));
+            delete.setStyle(String.valueOf(buttonStyleList.get(index)));
+            balloon.setStyle(String.valueOf(buttonStyleList.get(index)));
+            filler.setStyle(String.valueOf(buttonStyleList.get(index)));
+            save.setStyle(String.valueOf(buttonStyleList.get(index)));
             love.setId("love" + curNote);
             delete.setId("delete" + curNote);
             balloon.setId("balloon" + curNote);
@@ -234,7 +252,7 @@ public class Notes {
             TextArea tempNote = new TextArea();
             try {
                 List<String> line = new ArrayList<>();
-                File inFile = new File("D:\\IDEA Project\\Y3\\src\\notes\\" + save.getId() + ".txt");
+                File inFile = new File("src/notes/" + save.getId() + ".txt");
                 BufferedReader in = new BufferedReader(new FileReader(inFile));
                 String str;
 
@@ -259,7 +277,12 @@ public class Notes {
 
             tempNote.setPromptText("Write your text here!");
             tempNote.setWrapText(true);
-            tempNote.setStyle(String.valueOf(noteStyle));
+            tempNote.setStyle(String.valueOf(noteStyleList.get(index)));
+            index++;
+            if(index>3){
+                index = 0;
+            }
+
             saveIdList.add(save.getId());
             taList.add(tempNote);
             GridPane.setMargin(tempNote, new Insets(0, 0, 10, 0));
@@ -298,7 +321,7 @@ public class Notes {
     private void saveNote(String saveId) {
         try {
             List<String> line = new ArrayList<>();
-            File outFile = new File("D:\\IDEA Project\\Y3\\src\\notes\\" + saveId + ".txt");
+            File outFile = new File("src/notes/" + saveId + ".txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(outFile));
             String str;
 

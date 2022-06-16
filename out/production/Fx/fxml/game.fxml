@@ -14,6 +14,8 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -39,6 +41,7 @@
    <children>
       <AnchorPane fx:id="leftPane" prefHeight="650.0" prefWidth="250.0" style="-fx-background-color: linear-gradient(to bottom, #000000,#414141,#414141,#000000); -fx-background-radius: 20 20 0 20;" GridPane.rowSpan="8">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#858b91" height="118.0" layoutX="11.0" layoutY="522.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 10; -fx-arc-width: 10;" width="165.0" />
             <ImageView fitHeight="89.0" fitWidth="73.0" layoutX="80.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../pic/Y3set.png" />
@@ -130,101 +133,194 @@
                   <Image url="@../pic/blackclose.png" />
                </image>
             </ImageView>
-            <Text layoutX="321.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minigame">
+            <Text fx:id="puzzleText" layoutX="234.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15 Puzzle" wrappingWidth="278.0000305175781">
                <font>
-                  <Font size="24.0" />
-               </font></Text>
-            <Pane fx:id="gamePane" layoutX="174.0" layoutY="92.0" prefHeight="400.0" prefWidth="400.0">
+                  <Font name="Snap ITC" size="48.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.8526315689086914" green="0.3906315863132477" blue="0.3663157820701599" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.008997800610576789">
+                           <color>
+                              <Color red="0.8526315689086914" green="0.3906315863132477" blue="0.3663157820701599" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.3576765256212454">
+                           <color>
+                              <Color red="0.9029005765914917" green="0.9157894849777222" blue="0.6580116748809814" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.7099202311000231">
+                           <color>
+                              <Color red="0.7055555582046509" green="0.6666666865348816" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.9947050520303317">
+                           <color>
+                              <Color red="0.7656790018081665" green="1.0" blue="0.729629635810852" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7656790018081665" green="1.0" blue="0.729629635810852" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill></Text>
+            <Pane fx:id="gamePane" layoutX="162.0" layoutY="119.0" prefHeight="400.0" prefWidth="400.0">
                <children>
-                  <Button fx:id="button1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="1">
+                  <Button fx:id="button1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FBC1FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="1">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button2" layoutX="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="2">
+                  <Button fx:id="button2" layoutX="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FFFAC1; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="2">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button3" layoutX="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="3">
+                  <Button fx:id="button3" layoutX="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #C1D3FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="3">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button5" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="5">
+                  <Button fx:id="button5" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #E2FFC1; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="5">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button4" layoutX="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="4">
+                  <Button fx:id="button4" layoutX="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #E2FFC1; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="4">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button6" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="6">
+                  <Button fx:id="button6" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FBC1FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="6">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button7" layoutX="200.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="7">
+                  <Button fx:id="button7" layoutX="200.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: FFFAC1; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="7">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button8" layoutX="300.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="8">
+                  <Button fx:id="button8" layoutX="300.0" layoutY="100.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #C1D3FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="8">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button9" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="9">
+                  <Button fx:id="button9" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #C1D3FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="9">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button10" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="10">
+                  <Button fx:id="button10" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #E2FFC1; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="10">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button11" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="11">
+                  <Button fx:id="button11" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FBC1FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="11">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button12" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="12">
+                  <Button fx:id="button12" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: FFFAC1; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="12">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button13" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="13">
+                  <Button fx:id="button13" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FBC1FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="13">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button14" layoutX="100.0" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="14">
+                  <Button fx:id="button14" layoutX="100.0" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #C1D3FF; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="14">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="button15" layoutX="200.0" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20; -fx-border-width: 1;" text="15">
+                  <Button fx:id="button15" layoutX="200.0" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #E2FFC1; -fx-background-radius: 20; -fx-border-color: WHITE; -fx-border-radius: 20; -fx-border-width: 1;" text="15">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="minigame1" layoutX="110.0" layoutY="167.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="180.0" text="15 Puzzle">
+                  <Button fx:id="minigame1" layoutX="98.0" layoutY="168.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="219.0" style="-fx-background-color: black; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #FFF2F2; -fx-border-width: 1.5;" text="15 Puzzle">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Rockwell Nova Italic" size="36.0" />
                      </font>
                      <textFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
                               <Stop>
                                  <color>
-                                    <Color />
+                                    <Color red="0.4699999988079071" green="1.0" blue="0.9194687008857727" />
                                  </color>
                               </Stop>
-                              <Stop offset="0.5121951219512195">
+                              <Stop offset="0.20107343334536973">
                                  <color>
-                                    <Color red="0.6600000262260437" green="0.13860000669956207" blue="0.13860000669956207" />
+                                    <Color red="0.4699999988079071" green="1.0" blue="0.9194687008857727" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.49974723434986695">
+                                 <color>
+                                    <Color red="1.0" green="0.7498731017112732" blue="0.46000000834465027" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.8266782654367594">
+                                 <color>
+                                    <Color red="1.0" green="0.5243654847145081" blue="0.25" />
                                  </color>
                               </Stop>
                               <Stop offset="1.0">
                                  <color>
-                                    <Color red="1.0" />
+                                    <Color red="1.0" green="0.5243654847145081" blue="0.25" />
                                  </color>
                               </Stop>
                            </stops>
                         </LinearGradient>
                      </textFill>
                   </Button>
-                  <Button fx:id="restart" layoutX="324.0" layoutY="337.0" mnemonicParsing="false" text="Restart" />
+                  <Circle fx:id="restart" fill="#ffbf7a" layoutX="350.0" layoutY="350.0" radius="21.0" strokeType="INSIDE" />
+                  <ImageView fx:id="restartImg" fitHeight="34.0" fitWidth="35.0" layoutX="333.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../pic/Refresh.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
+            <Circle fx:id="restart1" fill="#ffbf7a" layoutX="595.0" layoutY="71.0" radius="21.0" strokeType="INSIDE" />
+            <ImageView fx:id="restartImg1" fitHeight="34.0" fitWidth="35.0" layoutX="578.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@../pic/Refresh.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="minigameText" layoutX="293.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minigame">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006729475100942127">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.27590847913862726">
+                           <color>
+                              <Color red="0.6842105388641357" green="0.6588693857192993" blue="0.6588693857192993" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.7287003906378228">
+                           <color>
+                              <Color red="0.6800000071525574" green="0.659600019454956" blue="0.659600019454956" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
           </children>
          <GridPane.margin>
             <Insets />
