@@ -348,9 +348,12 @@ public class Notes {
      * @param saveId 想要保存便签的id
      */
     private void saveNote(String saveId) {
+        File directory = new File("src/notes");
+        int fileCount = directory.list().length;
+        System.out.println("Load File Count:"+fileCount);
+
         try {
-            List<String> line = new ArrayList<>();
-            File outFile = new File("src/notes/" + saveId + ".txt");
+            File outFile = new File("src/notes/save" + fileCount + ".txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(outFile));
             String str;
 
