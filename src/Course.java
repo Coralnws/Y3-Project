@@ -9,9 +9,9 @@ public class Course {
     private int endWeek;
     private boolean isOddWeek;
     private boolean isEvenWeek;
-    private Color color;
+    private String color;
 
-    public Course(String name, int weekDay, int periodStart, int periodEnd, int startWeek, int endWeek, boolean isOddWeek, boolean isEvenWeek, Color color){
+    public Course(String name, int weekDay, int periodStart, int periodEnd, int startWeek, int endWeek, boolean isOddWeek, boolean isEvenWeek, String color){
         this.name = name;
         this.weekDay = weekDay;
         this.periodStart = periodStart;
@@ -47,7 +47,7 @@ public class Course {
     public boolean isOddWeek() {
         return isOddWeek;
     }
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 }

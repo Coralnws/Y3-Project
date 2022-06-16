@@ -370,7 +370,7 @@
                               <Font name="DengXian Regular" size="14.0" />
                            </font>
                         </Label>
-                        <VBox fx:id="courseVBox" layoutX="106.0" layoutY="128.0" prefHeight="246.0" prefWidth="358.0" style="-fx-background-color: #BBBBBB;" />
+                        <VBox fx:id="courseVBox" layoutX="106.0" layoutY="128.0" prefHeight="246.0" prefWidth="358.0" style="-fx-background-color: #EEEEEE;" />
                         <Button fx:id="submitTimeTable" layoutX="350.0" layoutY="392.0" mnemonicParsing="false" style="-fx-background-color: #F5E0E0;" text="Modify" />
                         <Button fx:id="cancel" layoutX="415.0" layoutY="392.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="Cancel" />
                         <Button fx:id="addCourse" layoutX="106.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: none;" text="+ Add Course" textFill="#903950">
@@ -457,6 +457,117 @@
                         <ColorPicker fx:id="courseColor" layoutX="147.0" layoutY="230.0" style="-fx-background-color: none;" />
                         <Button fx:id="submitNewCourse" layoutX="334.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: #F5E0E0;" text="Save" />
                         <Button fx:id="cancelAdd" layoutX="399.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="Cancel" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </DialogPane>
+            <DialogPane fx:id="failed" layoutX="244.0" layoutY="141.0" prefHeight="141.0" prefWidth="90.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3),10,0,1,1);" visible="false">
+               <header>
+                  <AnchorPane prefHeight="32.0" prefWidth="260.0" style="-fx-background-color: #F5C9C9;">
+                     <children>
+                        <Label fx:id="failTitle" prefHeight="32.0" prefWidth="200.0" text="Add Course Failed">
+                           <font>
+                              <Font name="DengXian Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </header>
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="failText" prefHeight="55.0" prefWidth="293.0" text="All fields can't be empty!" wrapText="true">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="failOK" layoutX="256.0" layoutY="64.0" mnemonicParsing="false" prefWidth="50.0" style="-fx-background-color: #F5E0E0;" text="OK">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </AnchorPane>
+               </content>
+            </DialogPane>
+            <DialogPane fx:id="editCourse" layoutX="185.0" layoutY="140.0" prefHeight="300.0" prefWidth="468.0" visible="false">
+               <header>
+                  <AnchorPane prefHeight="32.0" prefWidth="500.0" style="-fx-background-color: #F5E0E0;">
+                     <children>
+                        <Label prefHeight="32.0" text="EDIT COURSE">
+                           <font>
+                              <Font name="DengXian Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </header>
+               <content>
+                  <AnchorPane prefHeight="265.0" prefWidth="474.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="16.0" prefWidth="120.0" text="Course Name :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="courseNameEdit" layoutX="147.0" layoutY="9.0" prefHeight="26.0" prefWidth="260.0" style="-fx-background-color: none; -fx-border-width: 0 0 1 0; -fx-border-color: #000000; -fx-border-radius: 0;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="64.0" prefWidth="120.0" text="Day Of The Week :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="dayOfWeekEdit" layoutX="147.0" layoutY="60.0" prefWidth="125.0" style="-fx-background-color: none;" />
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="104.0" prefWidth="120.0" text="Start At Period :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="startPeriodEdit" layoutX="147.0" layoutY="99.0" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: none;" />
+                        <Label alignment="CENTER_RIGHT" layoutX="214.0" layoutY="104.0" prefWidth="120.0" text="End At Period :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="endPeriodEdit" layoutX="356.0" layoutY="99.0" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: none;" />
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="147.0" prefWidth="120.0" text="Start At Week :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="startWeekEdit" layoutX="147.0" layoutY="142.0" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: none;" />
+                        <Label alignment="CENTER_RIGHT" layoutX="214.0" layoutY="147.0" prefWidth="120.0" text="End At Week :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="endWeekEdit" layoutX="356.0" layoutY="142.0" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: none;" />
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="194.0" prefWidth="120.0" text="Select Week :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="weekChoiceEdit" layoutX="147.0" layoutY="189.0" prefHeight="26.0" prefWidth="125.0" style="-fx-background-color: none;" />
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="235.0" prefWidth="120.0" text="Color :">
+                           <font>
+                              <Font name="DengXian Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <ColorPicker fx:id="courseColorEdit" layoutX="147.0" layoutY="230.0" style="-fx-background-color: none;" />
+                        <Button fx:id="submitEditCourse" layoutX="334.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: #F5E0E0;" text="Save" />
+                        <Button fx:id="cancelEdit" layoutX="399.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="Cancel" />
                      </children>
                   </AnchorPane>
                </content>

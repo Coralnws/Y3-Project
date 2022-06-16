@@ -249,6 +249,11 @@ public class CalendarPanel {
         });
     }
 
+    /**
+     * 修改schedule
+     * @param root
+     * @param s
+     */
     public void editSchedule(Parent root, Schedule s){
         GridPane cp = (GridPane) root.lookup("#calendarTable");
         Button addSchedule = (Button) root.lookup("#addSchedule");
