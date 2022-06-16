@@ -1,8 +1,4 @@
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
@@ -15,13 +11,10 @@ import javafx.scene.layout.*;
 
 import java.time.LocalDate;
 import java.time.ZoneOffset;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 
 public class TimeTable {
     private Calendar calendar;
-    private Calendar calendarNow;
     private Calendar today;
     private int dayOfWeek;
     private int weekNum;
@@ -31,7 +24,6 @@ public class TimeTable {
     private String[] allSemester = {"AUTUMN", "WINTER", "SPRING", "SUMMER"};
     private String[] allMonth = {"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
     private String[] allWeek = {"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
-    private String[] color = {":#E6B8AF",":#F4CCCC", ":#FCE5CD", ":#FFF2CC", ":#D9EAD3", ":#D0E0E3", ":#C9DAF8", ":#CFE2F3", ":#D9D2E9", ":#EAD1DC"};
     private Course[] course = new Course[30];
     private int courseCount = 0;
 

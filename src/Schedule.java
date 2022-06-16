@@ -4,11 +4,15 @@ public class Schedule {
     private String title;
     private LocalDate startDate;
     private LocalDate endDate;
+    private String color;
+    private String textColor;
 
-    public Schedule(String title, LocalDate start, LocalDate end){
+    public Schedule(String title, LocalDate start, LocalDate end, String color, String textColor){
         this.title = title;
         this.startDate = start;
         this.endDate = end;
+        this.color = color;
+        this.textColor = textColor;
     }
 
     public LocalDate getEndDate() {
@@ -20,14 +24,10 @@ public class Schedule {
     public String getTitle() {
         return title;
     }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public String getColor() {
+        return color;
     }
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-    public void setTitle(String title) {
-        this.title = title;
+    public String getTextColor() {
+        return textColor;
     }
 }
