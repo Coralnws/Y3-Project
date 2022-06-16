@@ -13,7 +13,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
+/** Minigame class
+ * 实现小游戏功能（数学华容道）
+ * @author Qing You
+ */
 public class Minigame {
     Parent root;
     AnchorPane centerPane;
@@ -21,23 +24,27 @@ public class Minigame {
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, button15;
     Button game1;
     Circle restart, restart1;
-    StringBuilder buttonStyle = new StringBuilder("-fx-background-radius: 20;-fx-border-color: linear-gradient(to top,#7C7575,#B8B0B0,#DFD3D3,#FBF0F0); -fx-border-radius: 20; -fx-border-width: 2;");
-    Font buttonFont = new Font("Rockwell Nova",18);
     ImageView restartImg, restartImg1;
     Text minigameText, puzzleText;
+    Text win1, win2, win3;
 
     int x = 0;
     int y = 0;
     boolean isDone = false;
     String moveTo;
     int[][] emptyTile = {{0,0,0,0,0,0},{0,1,1,1,1,0}, {0,1,1,1,1,0}, {0,1,1,1,1,0}, {0,1,1,1,2,0},{0,0,0,0,0,0}};
-//    int[][] answerTile = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}, {13,14,15,0}};
 //    int[][] currentTile = {{1,2,3,4}, {5,6,7,8}, {9,10,15,11}, {13,14,12,0}};
     int[][] currentTile = new int[4][4];
     List<Integer> numberList = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
 
-
+    /** Minigame构造函数
+     * 初始化页面及其他工具，将数字方块次序打乱且设置按钮（方块）事件
+     * @param root 从sceneController传入的fxml场景
+     */
     public Minigame(Parent root) {
+        /**
+         * 从fxml读取Node,初始化必要属性
+         */
         this.root = root;
         centerPane = (AnchorPane) root.lookup("#centerPane");
         gamePane = (Pane) root.lookup("#gamePane");
@@ -65,12 +72,16 @@ public class Minigame {
         restartImg1 = (ImageView) root.lookup("#restartImg1");
         minigameText = (Text) root.lookup("#minigameText");
         puzzleText = (Text) root.lookup("#puzzleText");
-
+        win1 = (Text) root.lookup("#win1");
+        win2 = (Text) root.lookup("#win2");
+        win3 = (Text) root.lookup("#win3");
 
         initialButton();
         randomTile();
 
-
+        /** button1~15.setOnAction
+         * 读取 button1~15 event，进行相应的判断工作
+         */
         button1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -235,6 +246,9 @@ public class Minigame {
             }
         });
 
+        /** restart.addEventHandler, restart1.addEventHandler
+         * 读取 restart Button event，重新开始游戏且打乱数字方块次序
+         */
         restart.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -244,6 +258,9 @@ public class Minigame {
             }
         });
 
+        /** restartImg.addEventHandler, restartImg1.addEventHandler
+         * 读取 restart ImageView event，重新游戏且打乱数字方块次序
+         */
         restartImg.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -271,35 +288,13 @@ public class Minigame {
             }
         });
 
-        game1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                System.out.println("CLICK game1");
-                game1.setVisible(false);
-                button1.setVisible(true);
-                button2.setVisible(true);
-                button3.setVisible(true);
-                button4.setVisible(true);
-                button5.setVisible(true);
-                button6.setVisible(true);
-                button7.setVisible(true);
-                button8.setVisible(true);
-                button9.setVisible(true);
-                button10.setVisible(true);
-                button11.setVisible(true);
-                button12.setVisible(true);
-                button13.setVisible(true);
-                button14.setVisible(true);
-                button15.setVisible(true);
-                restartImg1.setVisible(true);
-                restart1.setVisible(true);
-                puzzleText.setVisible(true);
-                minigameText.setVisible(false);
-            }
-        });
-
     }
 
+    /** checkEmptyTile
+     * 检查是否有空的方块
+     * @param tileNum 方块上的数字
+     * @return 对应走向（上、下、左、右、不移动）
+     */
     private String checkEmptyTile(String tileNum) {
         int currentX = 0;
         int currentY = 0;
@@ -336,7 +331,13 @@ public class Minigame {
         
         return "none";
     }
-    
+
+    /** moveTile
+     * 对方块进行移动操作
+     * @param button 方块按钮
+     * @param moveTo 移动的方向
+     * @param tileNum 方块上的数字
+     */
     private void moveTile(Button button, String moveTo, String tileNum) {
         int temp = 0;
         int currentX = 0; //current use on currentTile;
@@ -463,29 +464,22 @@ public class Minigame {
         }
     }
 
+    /** initialButton
+     * 初始化按钮、文字与图像
+     */
     private void initialButton() {
-        button1.setVisible(false);
-        button2.setVisible(false);
-        button3.setVisible(false);
-        button4.setVisible(false);
-        button5.setVisible(false);
-        button6.setVisible(false);
-        button7.setVisible(false);
-        button8.setVisible(false);
-        button9.setVisible(false);
-        button10.setVisible(false);
-        button11.setVisible(false);
-        button12.setVisible(false);
-        button13.setVisible(false);
-        button14.setVisible(false);
-        button15.setVisible(false);
         restart.setVisible(false);
         restartImg.setVisible(false);
-        restart1.setVisible(false);
-        restartImg1.setVisible(false);
-        puzzleText.setVisible(false);
+        minigameText.setVisible(false);
+        game1.setVisible(false);
+        win1.setVisible(false);
+        win2.setVisible(false);
+        win3.setVisible(false);
     }
 
+    /** randomTile
+     * 打乱方块的次序
+     */
     private void randomTile() {
         System.out.println("List before shuffle" + numberList);
         Collections.shuffle(numberList);
@@ -528,6 +522,10 @@ public class Minigame {
 
     }
 
+    /** isComplete
+     * 判断游戏是否已完成
+     * @return true表示完成游戏，false表示仍未完成
+     */
     private boolean isComplete() {
         int count = 0;
 
@@ -597,10 +595,15 @@ public class Minigame {
             button13.setDisable(true);
             button14.setDisable(true);
             button15.setDisable(true);
-            restart1.setDisable(true);
-            restartImg1.setDisable(true);
+//            restart1.setDisable(true);
+//            restartImg1.setDisable(true);
+            restart1.setVisible(false);
+            restartImg1.setVisible(false);
             restart.setVisible(true);
             restartImg.setVisible(true);
+            win1.setVisible(true);
+            win2.setVisible(true);
+            win3.setVisible(true);
 
             return true;
         }
@@ -608,6 +611,9 @@ public class Minigame {
         return false;
     }
 
+    /** restartGame
+     * 重新开始游戏
+     */
     private void restartGame() {
         button1.setDisable(false);
         button2.setDisable(false);
@@ -624,10 +630,15 @@ public class Minigame {
         button13.setDisable(false);
         button14.setDisable(false);
         button15.setDisable(false);
-        restart1.setDisable(false);
-        restartImg1.setDisable(false);
+//        restart1.setDisable(false);
+//        restartImg1.setDisable(false);
+        restart1.setVisible(true);
+        restartImg1.setVisible(true);
         restart.setVisible(false);
         restartImg.setVisible(false);
+        win1.setVisible(false);
+        win2.setVisible(false);
+        win3.setVisible(false);
 
         button1.setLayoutX(0);
         button1.setLayoutY(0);
@@ -660,6 +671,7 @@ public class Minigame {
         button15.setLayoutX(200);
         button15.setLayoutY(300);
 
+        emptyTile = new int [][]{{0,0,0,0,0,0},{0,1,1,1,1,0}, {0,1,1,1,1,0}, {0,1,1,1,1,0}, {0,1,1,1,2,0},{0,0,0,0,0,0}};
     }
 
 

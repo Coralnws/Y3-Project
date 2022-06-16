@@ -3,7 +3,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -16,6 +15,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Notes class
+ * 实现便签功能
+ * @author Qing You
+ */
 public class Notes {
     Parent root;
     GridPane notePane;
@@ -32,13 +35,20 @@ public class Notes {
     StringBuilder noteStyle = new StringBuilder("-fx-font-family:Rockwell Nova;-fx-font-size: 17;");
     StringBuilder buttonStyle = new StringBuilder("-fx-background-color:#ffb566;");
     StringBuilder addButtonStyle = new StringBuilder("-fx-background-radius:20; -fx-background-color:linear-gradient(#DC4570, #f4e2d8);");
-    String saveButtonStyle = new String("-fx-background-color:#ffff66; -fx-border-width:1; -fx-border-color:#000000; ");
 
+    /** Notes构造函数
+     * 初始化页面及其他工具，设置add按钮事件
+     * @param root 从sceneController传入的fxml场景
+     */
     public Notes(Parent root) {
+        /**
+         * 从fxml读取Node,初始化必要属性
+         */
         this.root = root;
         notePane = (GridPane) root.lookup("#notePane");
         notePane.setHgap(10);
         notePane.setVgap(13);
+
         add = (Button) root.lookup("#add");
         add.setStyle(String.valueOf(addButtonStyle));
         buttonStyleList.add(new StringBuilder("-fx-background-color:#F9F2ED"));
@@ -52,6 +62,9 @@ public class Notes {
 
         loadNote();
 
+        /** add.setOnAction
+         * 读取 add button event, 进行addNote操作
+         */
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -60,9 +73,11 @@ public class Notes {
             }
         });
 
-
     }
 
+    /** addNote
+     * 增加新的便签
+     */
     private void addNote() {
         if(curNote == 9) {
             System.out.println("FULL CANNOT ADD");
@@ -163,6 +178,10 @@ public class Notes {
 
     }
 
+    /** deleteNote
+     * 删除便签
+     * @param saveId 想要删除的便签id
+     */
     private void deleteNote(String saveId) {
         System.out.println("DELETE note: " + saveId);
 
@@ -190,6 +209,9 @@ public class Notes {
         
     }
 
+    /** loadNote
+     * 加载便签
+     */
     private void loadNote() {
         notePane.getChildren().clear();
         File directory = new File("src/notes");
@@ -318,6 +340,10 @@ public class Notes {
 
     }
 
+    /** saveNote
+     * 保存便签
+     * @param saveId 想要保存便签的id
+     */
     private void saveNote(String saveId) {
         try {
             List<String> line = new ArrayList<>();

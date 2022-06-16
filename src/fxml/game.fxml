@@ -235,48 +235,75 @@
                      <font>
                         <Font name="Rockwell Nova" size="33.0" />
                      </font></Button>
-                  <Button fx:id="minigame1" layoutX="98.0" layoutY="168.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="219.0" style="-fx-background-color: black; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #FFF2F2; -fx-border-width: 1.5;" text="15 Puzzle">
-                     <font>
-                        <Font name="Rockwell Nova Italic" size="36.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.4699999988079071" green="1.0" blue="0.9194687008857727" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.20107343334536973">
-                                 <color>
-                                    <Color red="0.4699999988079071" green="1.0" blue="0.9194687008857727" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.49974723434986695">
-                                 <color>
-                                    <Color red="1.0" green="0.7498731017112732" blue="0.46000000834465027" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.8266782654367594">
-                                 <color>
-                                    <Color red="1.0" green="0.5243654847145081" blue="0.25" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="0.5243654847145081" blue="0.25" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Button>
                   <Circle fx:id="restart" fill="#ffbf7a" layoutX="350.0" layoutY="350.0" radius="21.0" strokeType="INSIDE" />
                   <ImageView fx:id="restartImg" fitHeight="34.0" fitWidth="35.0" layoutX="333.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                      <image>
                         <Image url="@../pic/Refresh.png" />
                      </image>
                   </ImageView>
+                  <Text fx:id="win1" layoutX="28.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations">
+                     <font>
+                        <Font name="Forte" size="48.0" />
+                     </font>
+                     <fill>
+                        <LinearGradient endX="0.522727294401689" endY="1.0" startX="0.5303030235297752">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.800000011920929" green="0.18666666746139526" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.9433333277702332" green="1.0" blue="0.4333333373069763" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Text>
+                  <Text fx:id="win2" layoutX="-19.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You've completed the game!">
+                     <font>
+                        <Font name="Forte" size="36.0" />
+                     </font>
+                     <fill>
+                        <LinearGradient endX="0.5303030447526411" endY="1.0" startX="0.5303030235297752">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.800000011920929" green="0.18666666746139526" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.9170370101928711" green="1.0" blue="0.17037037014961243" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Text>
+                  <Text fx:id="win3" layoutX="24.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press restart button to play again">
+                     <font>
+                        <Font name="Forte" size="24.0" />
+                     </font>
+                     <fill>
+                        <LinearGradient endX="0.530303008628614" endY="1.0" startX="0.5303030235297752">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.800000011920929" green="0.18666666746139526" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.9433333277702332" green="1.0" blue="0.4333333373069763" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Text>
                </children>
             </Pane>
             <Circle fx:id="restart1" fill="#ffbf7a" layoutX="595.0" layoutY="71.0" radius="21.0" strokeType="INSIDE" />
@@ -321,6 +348,42 @@
                   </LinearGradient>
                </fill>
             </Text>
+            <Button fx:id="minigame1" layoutX="676.0" layoutY="470.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="0.0" style="-fx-background-color: black; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #FFF2F2; -fx-border-width: 1.5;" text="15 Puzzle">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.4699999988079071" green="1.0" blue="0.9194687008857727" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.20107343334536973">
+                           <color>
+                              <Color red="0.4699999988079071" green="1.0" blue="0.9194687008857727" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.49974723434986695">
+                           <color>
+                              <Color red="1.0" green="0.7498731017112732" blue="0.46000000834465027" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.8266782654367594">
+                           <color>
+                              <Color red="1.0" green="0.5243654847145081" blue="0.25" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="0.5243654847145081" blue="0.25" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
           </children>
          <GridPane.margin>
             <Insets />
