@@ -140,6 +140,7 @@ public class Notes {
         tempNote.setPromptText("Write your text here!");
         tempNote.setWrapText(true);
         tempNote.setStyle(String.valueOf(noteStyleList.get(index)));
+        tempNote.getStylesheets().add("fxml/notes.css");
         index++;
         if(index>3){
             index = 0;
@@ -213,6 +214,7 @@ public class Notes {
      * 加载便签
      */
     private void loadNote() {
+        index = 0;
         notePane.getChildren().clear();
         File directory = new File("src/notes");
         int fileCount = directory.list().length;
@@ -300,6 +302,7 @@ public class Notes {
             tempNote.setPromptText("Write your text here!");
             tempNote.setWrapText(true);
             tempNote.setStyle(String.valueOf(noteStyleList.get(index)));
+            tempNote.getStylesheets().add("fxml/notes.css");
             index++;
             if(index>3){
                 index = 0;
