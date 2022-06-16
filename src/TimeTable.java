@@ -123,7 +123,6 @@ public class TimeTable {
     private void editTimeTable(Parent root){
         GridPane tt = (GridPane) root.lookup("#timeTable");
         DialogPane editPanel = (DialogPane) root.lookup("#editPanel");
-        VBox vBox = (VBox) root.lookup("#courseVBox");
         Button addCourse = (Button) root.lookup("#addCourse");
 
         ChoiceBox<String> choiceBox = (ChoiceBox<String>) root.lookup("#semesterChoice");
@@ -164,7 +163,6 @@ public class TimeTable {
         cancel.setOnMouseClicked(event -> {
             editPanel.setVisible(false);
             tt.setDisable(false);
-            vBox.getChildren().clear();
         });
     }
 
@@ -322,13 +320,17 @@ public class TimeTable {
      * @param listTemp
      */
     private void paintCourseList(Parent root, LinkedList<Course> listTemp){
-        VBox vBox = (VBox) root.lookup("#courseVBox");
-        vBox.getChildren().clear();
+        VBox vBox1 = (VBox) root.lookup("#courseVBox1");
+        VBox vBox2 = (VBox) root.lookup("#courseVBox2");
+        vBox1.getChildren().clear();
+        vBox2.getChildren().clear();
+        int i = 0;
         for (Course c : listTemp) {
+            if(i >= 10) vBox2.setVisible(true);
             Label label = new Label(c.getName());
             Button deleteBtn = new Button("X");
-            label.setFont(Font.font("DengXian", 16));
-            label.setStyle("-fx-pref-width: 150;" + "-fx-padding: 1 5;");
+            label.setFont(Font.font("DengXian", 14));
+            label.setStyle("-fx-pref-width: 150;" + "-fx-pref-height: 16;" + "-fx-padding: 1 5;");
             deleteBtn.setStyle("-fx-background-color: none;" + "-fx-text-fill: #903950;");
             deleteBtn.setCursor(Cursor.HAND);
             deleteBtn.setOnMouseClicked(event -> {
@@ -336,7 +338,9 @@ public class TimeTable {
                 paintCourseList(root, listTemp);
             });
             HBox hBox = new HBox(label, deleteBtn);
-            vBox.getChildren().add(hBox);
+            if(i < 10) vBox1.getChildren().add(hBox);
+            else vBox2.getChildren().add(hBox);
+            i++;
         }
     }
 

@@ -370,10 +370,11 @@
                               <Font name="DengXian Regular" size="14.0" />
                            </font>
                         </Label>
-                        <VBox fx:id="courseVBox" layoutX="106.0" layoutY="128.0" prefHeight="246.0" prefWidth="358.0" style="-fx-background-color: #EEEEEE;" />
+                        <VBox fx:id="courseVBox1" layoutX="106.0" layoutY="128.0" prefHeight="255.0" prefWidth="170.0" style="-fx-background-color: #EEEEEE;" />
+                        <VBox fx:id="courseVBox2" layoutX="297.0" layoutY="128.0" prefHeight="255.0" prefWidth="170.0" style="-fx-background-color: #EEEEEE;" visible="false" />
                         <Button fx:id="submitTimeTable" layoutX="350.0" layoutY="392.0" mnemonicParsing="false" style="-fx-background-color: #F5E0E0;" text="Modify" />
                         <Button fx:id="cancel" layoutX="415.0" layoutY="392.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="Cancel" />
-                        <Button fx:id="addCourse" layoutX="106.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: none;" text="+ Add Course" textFill="#903950">
+                        <Button fx:id="addCourse" layoutX="106.0" layoutY="381.0" mnemonicParsing="false" style="-fx-background-color: none;" text="+ Add Course" textFill="#903950">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -461,41 +462,6 @@
                   </AnchorPane>
                </content>
             </DialogPane>
-            <DialogPane fx:id="failed" layoutX="244.0" layoutY="141.0" prefHeight="141.0" prefWidth="90.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3),10,0,1,1);" visible="false">
-               <header>
-                  <AnchorPane prefHeight="32.0" prefWidth="260.0" style="-fx-background-color: #F5C9C9;">
-                     <children>
-                        <Label fx:id="failTitle" prefHeight="32.0" prefWidth="200.0" text="Add Course Failed">
-                           <font>
-                              <Font name="DengXian Regular" size="19.0" />
-                           </font>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-               </header>
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="failText" prefHeight="55.0" prefWidth="293.0" text="All fields can't be empty!" wrapText="true">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Button fx:id="failOK" layoutX="256.0" layoutY="64.0" mnemonicParsing="false" prefWidth="50.0" style="-fx-background-color: #F5E0E0;" text="OK">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </AnchorPane>
-               </content>
-            </DialogPane>
             <DialogPane fx:id="editCourse" layoutX="185.0" layoutY="140.0" prefHeight="300.0" prefWidth="468.0" visible="false">
                <header>
                   <AnchorPane prefHeight="32.0" prefWidth="500.0" style="-fx-background-color: #F5E0E0;">
@@ -569,6 +535,41 @@
                         <Button fx:id="submitEditCourse" layoutX="334.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: #F5E0E0;" text="Save" />
                         <Button fx:id="cancelEdit" layoutX="399.0" layoutY="270.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="Cancel" />
                      </children>
+                  </AnchorPane>
+               </content>
+            </DialogPane>
+            <DialogPane fx:id="failed" layoutX="244.0" layoutY="141.0" prefHeight="141.0" prefWidth="90.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3),10,0,1,1);" visible="false">
+               <header>
+                  <AnchorPane prefHeight="32.0" prefWidth="260.0" style="-fx-background-color: #F5C9C9;">
+                     <children>
+                        <Label fx:id="failTitle" prefHeight="32.0" prefWidth="200.0" text="Add Course Failed">
+                           <font>
+                              <Font name="DengXian Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </header>
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="failText" prefHeight="55.0" prefWidth="293.0" text="All fields can't be empty!" wrapText="true">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="failOK" layoutX="256.0" layoutY="64.0" mnemonicParsing="false" prefWidth="50.0" style="-fx-background-color: #F5E0E0;" text="OK">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
                   </AnchorPane>
                </content>
             </DialogPane>

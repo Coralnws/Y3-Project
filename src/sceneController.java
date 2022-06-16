@@ -8,11 +8,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import javax.swing.text.html.ImageView;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+import java.util.List;
 
 /** sceneController
  * 切换不同功能页面
@@ -102,6 +110,7 @@ public class sceneController {
             showScene(event, root);
             currentPage=2;
             TimeTable t = new TimeTable(root);
+
         }
     }
 
@@ -155,4 +164,5 @@ public class sceneController {
         timerScene.setFill(Paint.valueOf("#ffffff00"));
         stage.show();
     }
+
 }
